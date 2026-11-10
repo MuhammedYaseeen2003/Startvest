@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>StartVest | Find Your Perfect Match</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #1a2a6c, #b21f1f, #fdbb2d);
+            color: white;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            width: 100%;
+            text-align: center;
+        }
+
+        .logo {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .logo-icon {
+            margin-right: 15px;
+            font-size: 3rem;
+        }
+
+        .hero-section {
+            padding: 40px 20px;
+            border-radius: 20px;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            margin-bottom: 40px;
+        }
+
+        h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .tagline {
+            font-size: 1.5rem;
+            margin-bottom: 40px;
+            opacity: 0.9;
+        }
+
+        .question {
+            font-size: 2rem;
+            margin-bottom: 40px;
+            font-weight: 600;
+        }
+
+        .selection-container {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            flex-wrap: wrap;
+        }
+
+        .selection-box {
+            background: white;
+            color: #333;
+            width: 300px;
+            height: 350px;
+            border-radius: 15px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 30px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .selection-box:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .startup-box {
+            background: linear-gradient(135deg, #00b4db, #0083b0);
+            color: white;
+        }
+
+        .investor-box {
+            background: linear-gradient(135deg, #f46b45, #eea849);
+            color: white;
+        }
+
+        .box-icon {
+            font-size: 4rem;
+            margin-bottom: 20px;
+        }
+
+        .box-title {
+            font-size: 2rem;
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+
+        .box-description {
+            font-size: 1rem;
+            line-height: 1.5;
+            opacity: 0.9;
+        }
+
+        .features {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            margin-top: 60px;
+            gap: 20px;
+        }
+
+        .feature {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            border-radius: 10px;
+            width: 250px;
+            backdrop-filter: blur(5px);
+        }
+
+        .feature-icon {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+        }
+
+        .feature-title {
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+
+        .footer {
+            margin-top: 60px;
+            padding: 20px;
+            text-align: center;
+            opacity: 0.8;
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.5rem;
+            }
+
+            .tagline {
+                font-size: 1.2rem;
+            }
+
+            .question {
+                font-size: 1.5rem;
+            }
+
+            .selection-box {
+                width: 100%;
+                max-width: 300px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="logo">
+            <span class="logo-icon">🚀</span>
+            Startup Investor Matcher
+        </div>
+
+        <div class="hero-section">
+            <h1>Welcome to Startup Investor Matcher</h1>
+            <p class="tagline">Where you can meet your eligible partners</p>
+            <p class="question">Are you?</p>
+
+            <div class="selection-container">
+                <div class="selection-box startup-box">
+                    <div class="box-icon">💡</div>
+                    <div class="box-title">A Startup</div>
+                    <div class="box-description">
+                        Looking for funding, mentorship, and strategic partners to grow your business?
+                    </div>
+                </div>
+
+                <div class="selection-box investor-box">
+                    <div class="box-icon">💰</div>
+                    <div class="box-title">An Investor</div>
+                    <div class="box-description">
+                        Seeking promising startups with high growth potential and innovative ideas?
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="features">
+            <div class="feature">
+                <div class="feature-icon">🤝</div>
+                <div class="feature-title">Perfect Matches</div>
+                <p>Our algorithm connects you with the most compatible partners</p>
+            </div>
+
+            <div class="feature">
+                <div class="feature-icon">🔒</div>
+                <div class="feature-title">Secure Platform</div>
+                <p>Your data and conversations are protected with enterprise-grade security</p>
+            </div>
+
+            <div class="feature">
+                <div class="feature-icon">🚀</div>
+                <div class="feature-title">Fast Results</div>
+                <p>Start connecting with potential partners in minutes, not months</p>
+            </div>
+        </div>
+
+        <div class="footer">
+            <p>© 2023 Startup Investor Matcher. All rights reserved.</p>
+        </div>
+    </div>
+
+    <script>
+        // Add click functionality to the selection boxes
+        document.querySelector('.startup-box').addEventListener('click', function() {
+{#            alert('Redirecting to Startup Registration...');#}
+            window.location="/startup_reg";
+            // In a real implementation, this would redirect to the startup registration page
+        });
+
+        document.querySelector('.investor-box').addEventListener('click', function() {
+{#            alert('Redirecting to Investor Registration...');#}
+            window.location="/investor_reg";
+            // In a real implementation, this would redirect to the investor registration page
+        });
+    </script>
+</body>
+</html>

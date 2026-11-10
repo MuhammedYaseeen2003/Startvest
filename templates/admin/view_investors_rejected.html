@@ -1,0 +1,41 @@
+{% extends "admin/admin_home.html" %}
+{% block body %}
+<table class="table table-bordered">
+<tr>
+    <th>Sl. No.</th>
+    <th>Investor Name</th>
+    <th>Organisation Name</th>
+    <th>Profile</th>
+    <th>Bio</th>
+    <th>Past Investments</th>
+    <th>Preferred Industry</th>
+    <th>Preferred Stage</th>
+    <th>Action</th>
+</tr>
+    {% for i in data %}
+<tr>
+    <td>{{ forloop.counter }}</td>
+    <td align="center"><img src="{{ i.profile_image }}" height="100" width="100" /><br> <b>{{ i.investor_name }}</b></td>
+    <td>{{ i.org_name }}</td>
+    <td>
+        Email : {{ i.email }}<br>
+        Website : <a href="{{ i.website }}" target="_blank">{{ i.website }}</a> <br>
+        Linked In : <a href="{{ i.linkedin }}" target="_blank">{{ i.linkedin }}</a>
+    </td>
+    <td>{{ i.bio }}</td>
+    <td>
+        {% if i.past_investments == "" %}
+         <b style="color: #b21f1f">Not provided</b>
+        {% else %}
+         {{ i.past_investments }}
+        {% endif %}
+    </td>
+    <td>{{ i.preferred_industry }}</td>
+    <td>{{ i.preferred_stage }}</td>
+    <td>
+        <a href="/admin_approve_investors2/{{ i.id }}" onclick="return confirm('Are you sure?')" class="btn btn-success" style="width: 100%">Approve</a><br><br>
+    </td>
+</tr>
+{% endfor %}
+</table>
+{% endblock %}

@@ -1,0 +1,33 @@
+{% extends "admin/admin_home.html" %}
+{% block body %}
+<table class="table table-bordered">
+<tr>
+    <th>Sl. No.</th>
+    <th>Startup Name</th>
+    <th>Profile</th>
+    <th>Description</th>
+    <th>Industry</th>
+    <th>Location</th>
+    <th>Team Size</th>
+    <th>Approved</th>
+</tr>
+    {% for i in data %}
+<tr>
+    <td>{{ forloop.counter }}</td>
+    <td align="center"><img src="{{ i.profile_image }}" height="100" width="100" /><br> <b>{{ i.company_name }}</b></td>
+    <td>
+        Email : {{ i.email }}<br>
+        Website : <a href="{{ i.website }}" target="_blank">{{ i.website }}</a> <br>
+        Linked In : <a href="{{ i.linkedin }}" target="_blank">{{ i.linkedin }}</a>
+    </td>
+    <td>{{ i.description }}</td>
+    <td>{{ i.industry }}</td>
+    <td>{{ i.location }}</td>
+    <td>{{ i.team_size }}</td>
+    <td>
+        <a href="/admin_approve_startups2/{{ i.id }}" onclick="return confirm('Are you sure?')" class="btn btn-success" style="width: 100%">Approve</a><br><br>
+    </td>
+</tr>
+{% endfor %}
+</table>
+{% endblock %}

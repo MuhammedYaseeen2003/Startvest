@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>StartVest | Startup Portal</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #1a2a6c, #b21f1f, #fdbb2d);
+            color: #333;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 800px;
+            width: 100%;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #00b4db, #0083b0);
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .logo {
+            font-size: 2rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 10px;
+        }
+
+        .logo-icon {
+            margin-right: 10px;
+            font-size: 2.5rem;
+        }
+
+        .page-title {
+            font-size: 1.8rem;
+            margin-bottom: 10px;
+        }
+
+        .content {
+            padding: 30px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+
+        input, select, textarea {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: border 0.3s;
+        }
+
+        input:focus, select:focus, textarea:focus {
+            border-color: #00b4db;
+            outline: none;
+        }
+
+        .password-container {
+            position: relative;
+        }
+
+        .toggle-password {
+            position: absolute;
+            right: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: none;
+            border: none;
+            cursor: pointer;
+            color: #666;
+        }
+
+        .funding-range {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+        }
+
+        .funding-input {
+            flex: 1;
+        }
+
+        .unit-selector {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .unit-arrow {
+            background: none;
+            border: none;
+            font-size: 1.2rem;
+            cursor: pointer;
+            color: #666;
+            padding: 0 5px;
+        }
+
+        .unit-display {
+            padding: 5px 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            min-width: 80px;
+            text-align: center;
+        }
+
+        .profile-image {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .profile-preview {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid #00b4db;
+            margin-bottom: 10px;
+        }
+
+        .upload-btn {
+            display: inline-block;
+            background: #00b4db;
+            color: white;
+            padding: 8px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .upload-btn:hover {
+            background: #0083b0;
+        }
+
+        .file-input {
+            display: none;
+        }
+
+        .form-actions {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 30px;
+        }
+
+        .btn {
+            padding: 12px 25px;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .btn-primary {
+            background: #00b4db;
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: #0083b0;
+        }
+
+        .btn-secondary {
+            background: #f0f0f0;
+            color: #333;
+        }
+
+        .btn-secondary:hover {
+            background: #e0e0e0;
+        }
+
+        .links {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+        }
+
+        .link {
+            color: #00b4db;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .link:hover {
+            text-decoration: underline;
+        }
+
+        .page {
+            display: none;
+        }
+
+        .active {
+            display: block;
+        }
+
+        .message {
+            padding: 10px 15px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .success {
+            background: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+
+        .error {
+            background: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+
+        .info {
+            background: #cce7ff;
+            color: #004085;
+            border: 1px solid #b3d7ff;
+        }
+
+        @media (max-width: 768px) {
+            .funding-range {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .form-actions {
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            .links {
+                flex-direction: column;
+                gap: 10px;
+                align-items: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="logo">
+                <span class="logo-icon">🚀</span>
+                Startup Investor Matcher
+            </div>
+            <div class="page-title">Signup as Startup</div>
+        </div>
+
+
+        <!-- Signup Page -->
+        <div id="signup-page" class="page  active">
+            <div class="content">
+                <h2 style="text-align: center; margin-bottom: 20px; text-transform: uppercase;">Fill Out Your Data</h2>
+
+                <form onsubmit="return signup_validate()" id="signup-form" method="post" action="/startup_reg_post" enctype="multipart/form-data">
+                    <div class="profile-image">
+                        <img id="profile-preview" src="https://via.placeholder.com/120" alt="Profile Preview" class="profile-preview">
+                        <label for="profile-image" class="upload-btn">Upload Profile Image</label>
+                        <input type="file" id="profile-image" name="profile-image" class="file-input" accept="image/*">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="company-email">Company Domain Email</label>
+                        <input type="email" id="company-email" name="company-email" placeholder="Enter company domain email" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="company-name">Company Name</label>
+                        <input type="text" id="company-name" name="company-name" placeholder="Enter company name" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="website">Website</label>
+                        <input type="url" id="website" name="website" placeholder="Enter company website URL">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="linkedin">LinkedIn</label>
+                        <input type="url" id="linkedin" name="linkedin" placeholder="Enter LinkedIn profile URL">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="description">Description</label>
+                        <textarea id="description" name="description" rows="4" placeholder="Describe your company"></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="industry">Industry</label>
+                        <select id="industry" name="industry" required>
+                            <option value="fintech">FinTech</option>
+                            <option value="healthtech">HealthTech</option>
+                            <option value="edtech">EdTech</option>
+                            <option value="cleantech">CleanTech</option>
+                            <option value="ecommerce">E-commerce</option>
+                            <option value="saas">SaaS</option>
+                            <option value="aiml">AI / ML</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="location">Location</label>
+                        <input type="text" id="location" name="location" placeholder="Enter company location">
+                    </div>
+
+                    <div class="form-group">
+                        <label>Funding Need</label>
+                        <div class="funding-range">
+                            <div class="funding-input">
+                                <input type="number" id="funding-min" name="funding-min" placeholder="Minimum" min="0" required>
+                            </div>
+                            <div class="funding-input">
+                                <input type="number" id="funding-max" name="funding-max" placeholder="Maximum" min="0" required>
+                            </div>
+                            <div class="unit-selector">
+                                <button type="button" class="unit-arrow" onclick="changeUnit(1)">▲</button>
+                                <input type="hidden" id="units" name="units" />
+                                <div class="unit-display" id="unit-display" onChange="unit_change()">Lakh</div>
+                                <button type="button" class="unit-arrow" onclick="changeUnit(-1)">▼</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="team-size">Team Size (Optional)</label>
+                        <input type="number" id="team-size" name="team-size" placeholder="Enter team size" min="1">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="signup-password">Create Password</label>
+                        <div class="password-container">
+                            <input type="password" id="signup-password" name="signup-password" placeholder="Create password" required>
+                            <button type="button" class="toggle-password" onclick="togglePassword('signup-password')">👁️</button>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="confirm-signup-password">Confirm Password</label>
+                        <div class="password-container">
+                            <input type="password" id="confirm-signup-password" name="confirm-signup-password" placeholder="Confirm password" required>
+                            <button type="button" class="toggle-password" onclick="togglePassword('confirm-signup-password')">👁️</button>
+                        </div>
+                    </div>
+
+                    <div class="form-actions">
+                        <a href="/" class="btn btn-secondary">Back to Login</a>
+                        <button type="submit" class="btn btn-primary">Sign Up</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function unit_change() {
+            var unt=document.getElementById("unit-display").innerHTML;
+        }
+        // Page navigation
+        function showPage(pageId) {
+            document.querySelectorAll('.page').forEach(page => {
+                page.classList.remove('active');
+            });
+            document.getElementById(pageId).classList.add('active');
+        }
+
+        // Toggle password visibility
+        function togglePassword(inputId) {
+            const input = document.getElementById(inputId);
+            const button = input.nextElementSibling;
+
+            if (input.type === 'password') {
+                input.type = 'text';
+                button.textContent = '🙈';
+            } else {
+                input.type = 'password';
+                button.textContent = '👁️';
+            }
+        }
+
+        // Funding unit selector
+        const units = ['Thousand', 'Lakh', 'Crore'];
+        let currentUnitIndex = 1; // Start with Lakh
+
+        function changeUnit(direction) {
+            currentUnitIndex += direction;
+
+            if (currentUnitIndex < 0) {
+                currentUnitIndex = units.length - 1;
+            } else if (currentUnitIndex >= units.length) {
+                currentUnitIndex = 0;
+            }
+
+            document.getElementById('unit-display').textContent = units[currentUnitIndex];
+            unit_change(); // Call the function to update the hidden field
+        }
+
+        // Update hidden field when unit changes
+        function unit_change() {
+            const selectedUnit = document.getElementById('unit-display').textContent;
+
+            document.getElementById('units').value = selectedUnit;
+            console.log("Selected unit stored in hidden field:", selectedUnit);
+        }
+
+        // Profile image upload
+        document.getElementById('profile-image').addEventListener('change', function(e) {
+            const file = e.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    document.getElementById('profile-preview').src = e.target.result;
+                };
+                reader.readAsDataURL(file);
+            }
+        });
+
+        // Form submissions
+        document.getElementById('login-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Login functionality would be implemented here');
+            // In a real app, this would validate credentials and redirect to dashboard
+        });
+
+        document.getElementById('forgot-password-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            showPage('reset-code-page');
+        });
+
+        document.getElementById('reset-code-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            showPage('new-password-page');
+        });
+
+        document.getElementById('new-password-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const newPassword = document.getElementById('new-password').value;
+            const confirmPassword = document.getElementById('confirm-password').value;
+
+            if (newPassword !== confirmPassword) {
+                alert('Passwords do not match!');
+                return;
+            }
+
+            alert('Password updated successfully!');
+            showPage('login-page');
+        });
+
+        function signup_validate() {
+            const password = document.getElementById('signup-password').value;
+            const confirmPassword = document.getElementById('confirm-signup-password').value;
+
+            if (password !== confirmPassword) {
+                alert('Passwords do not match!');
+                return false;
+            }
+
+            return true;
+
+
+        }
+
+    </script>
+</body>
+</html>
